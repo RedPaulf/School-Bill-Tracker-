@@ -1,0 +1,257 @@
+:root {
+  --cpesa-maroon: #6E1F1F;
+  --cpesa-charcoal: #2E2E2E;
+  --cpesa-silver: #C0C0C0;
+  --cpesa-gold: #FFC454;
+  --cpesa-skyblue: #3DB1C2;
+}
+
+/* Base Styles */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Navbar Styles */
+.navbar {
+    background: var(--cpesa-maroon);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 2rem;
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: var(--cpesa-gold);
+  transform: translateY(-2px);
+}
+
+.nav-link.active {
+  color: var(--cpesa-gold);
+  font-weight: 600;
+}
+
+.btn-warning {
+  background: var(--cpesa-gold);
+  color: var(--cpesa-maroon);
+  font-weight: 600;
+}
+
+.btn-secondary {
+    background-color: var(--cpesa-charcoal);
+    border: none;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: var(--cpesa-maroon);
+    transform: translateX(-3px);
+}
+
+.btn-secondary i {
+    transition: transform 0.3s ease;
+}
+
+.btn-secondary:hover i {
+    transform: translateX(-3px);
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)),
+              url('data:image/png;base64,...'), var(--cpesa-silver);
+  padding: 4rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section h1 {
+  color: var(--cpesa-charcoal);
+  font-size: 2.5rem;
+  line-height: 1.2;
+}
+
+/* Footer */
+.footer-section {
+  background: var(--cpesa-charcoal);
+  padding: 3rem 0;
+}
+
+.footer-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-block {
+  width: 100%;
+  max-width: 600px;
+  text-align: center !important;
+}
+
+.text-accent-gold {
+  color: var(--cpesa-gold);
+}
+
+.text-white-75 {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.social-links {
+  justify-content: center;
+}
+
+.social-links a {
+  color: white;
+  font-size: 1.25rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.social-links a:hover {
+  color: var(--cpesa-skyblue);
+}
+
+/* Contact Section */
+.list-unstyled {
+  text-align: left;
+  padding-left: 2rem;
+}
+
+.list-unstyled li {
+  margin-bottom: 0.75rem;
+}
+
+.list-unstyled i {
+  width: 1.25rem;
+  text-align: center;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(110, 31, 31, 0.2);
+}
+
+/* Status Badge Styles */
+.badge.bg-success { background-color: #2ecc40 !important; }
+.badge.bg-warning { background-color: #ffc107 !important; }
+.badge.bg-danger { background-color: #dc3545 !important; }
+
+/* Status Select Styles */
+.status-select.status-paid {
+  background-color: #2ecc40 !important; /* green */
+  color: #fff !important;
+}
+.status-select.status-pending {
+  background-color: #ffc107 !important; /* yellow */
+  color: #333 !important;
+}
+.status-select.status-overdue {
+  background-color: #dc3545 !important; /* red */
+  color: #fff !important;
+}
+
+/* Responsive Adjustments */
+@media (min-width: 768px) {
+  .hero-section h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-section .container {
+    text-align: center;
+  }
+
+  .hero-section img.hero-camo-img {
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0,0,0,0.5) 10%,
+      rgba(0,0,0,0.9) 50%,
+      rgba(0,0,0,0.5) 90%,
+      transparent 100%
+    );
+    max-width: 90%;
+    margin: 1rem auto;
+  }
+}
+
+h1 {
+    text-align: center;
+    color: #6E1F1F;
+    margin-bottom: 30px;
+    font-weight: 700;
+  }
+  table {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    
+    border: none;
+    box-sizing: border-box;
+    box-shadow: 0 4px 15px rgba(110, 31, 31, 0.2);
+  }
+  thead tr {
+    background: #6E1F1F;
+    color: #fff;
+    text-align: left;
+    font-size: 1rem;
+  }
+  thead th {
+    padding: 14px 20px;
+   
+    border: none;
+  }
+  tbody tr {
+    background: #fafafa;
+    color: #333;
+    transition: background-color 0.3s ease;
+    cursor: default;
+  }
+ 
+  tbody tr:not(:last-child) {
+    border: none;
+  }
+  tbody tr:hover {
+    background: #f1dede;
+  }
+  tbody td {
+    padding: 16px 20px;
+    font-size: 0.95rem;
+    border: none;
+  }
+  tbody td.amount {
+    font-weight: 600;
+  }
+  tbody td.status {
+    font-weight: 600;
+  }
+  tbody td.status.overdue {
+    color: #6E1F1F;
+  }
+  tbody td.status.pending {
+    color: #b86e1f;
+  }
+  tbody td.status.paid {
+    color: #2e7d32;
+  }
