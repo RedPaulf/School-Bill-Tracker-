@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="stylesheet" href="login.css" />
+  <link rel="stylesheet" href="../css/styles.css"/>
+</head>
+<body class="bg-light">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark shadow-sm px-3 py-3">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="../index.html">
+                <img src="../cpess.png" alt="School Logo" style="height: 40px; width: auto; margin-right: 10px;" />
+                School Bill Tracker
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto me-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Form -->
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="card shadow rounded-4 p-4" style="max-width: 400px; width: 100%;">
+            <h1 class="text-center mb-4 fw-bold">Login</h1>
+            <form id="loginForm">
+                <!-- ID Input -->
+                <div class="mb-3 position-relative">
+                    <label for="studentId" class="form-label visually-hidden">ID</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                        <input type="text" class="form-control" id="studentId" placeholder="Enter Student/Admin ID" required />
+                    </div>
+                </div>
+
+                <!-- Password Input -->
+                <div class="mb-3 position-relative">
+                    <label for="adminPassword" class="form-label visually-hidden">Password</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        <input type="password" class="form-control" id="adminPassword" placeholder="Enter Password" required />
+                        <button type="button" class="input-group-text toggle-password" aria-label="Toggle password visibility">
+                            <i class="fas fa-eye" id="toggleIcon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-warning fw-bold">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/login.js"></script>
+</body>
+</html>

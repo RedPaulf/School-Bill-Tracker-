@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Webpage</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body class="bg-white text-dark">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-md navbar-dark shadow-sm px-3 py-3" style="background: var(--cpesa-maroon);">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="../cpess.png" alt="School Logo" style="height: 40px; width: auto; margin-right: 10px;" />
+            CPESS UBAT PayMonitor
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto me-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="goHome(event)">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact</a>
+                </li>
+            </ul>
+            <button id="logoutBtn" class="btn btn-warning">
+                <i class="fas fa-sign-out-alt me-1"></i> Logout
+            </button>
+        </div>
+    </div>
+  </nav>
+  <!-- __________________________________________________________________ -->
+
+  <!-- Hero Section -->
+  <div class="container-fluid py-4">
+    <div class="row">
+        <div class="col">
+            <h1>Student List</h1>
+        </div>
+        <div class="col-auto d-flex flex-column gap-2">
+            <!-- Existing buttons -->
+            <button class="btn btn-success w-100" onclick="window.location.href='managebills.html'">
+                <i class="fas fa-file-invoice-dollar me-1"></i> Manage Bills
+            </button>
+            <button id="editBtn" class="btn btn-primary w-100">
+                <i class="fas fa-edit me-1"></i> Edit List
+            </button>
+            <button id="saveBtn" class="btn btn-primary w-100" style="display:none;">
+                <i class="fas fa-save me-1"></i> Save Changes
+            </button>
+            
+            <!-- Move search input here -->
+            <div class="input-group">
+                <input type="text" 
+                       id="searchInput" 
+                       class="form-control" 
+                       placeholder="Search by Student ID..."
+                       aria-label="Search by Student ID">
+                <button class="btn btn-outline-secondary" type="button" id="clearSearchBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <table id="paymentTable" class="table table-bordered align-middle">
+    <thead>
+      <tr style="background-color: #6E1F1F; color: #fff;">
+        <th>Name</th>
+        <th>Student ID</th>
+        <th class="action-column" style="display: none;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Rows rendered by JS -->
+    </tbody>
+</table>
+  <!-- ___________________________________________________________________ -->
+  <!-- Footer -->
+  <footer class="footer-section py-5 mt-5">
+    <div class="container">
+      <div class="footer-stack">
+        <!-- About Section -->
+        <div class="footer-block mb-4" id="about">
+          <h4 class="text-accent-gold mb-3">About CPESS</h4>
+          <p class="text-white-75">The Computer Engineering Students Association (CPESS) is dedicated to fostering excellence in computer engineering through innovative solutions and professional development.</p>
+        </div>
+        <!-- Contacts Section -->
+        <div class="footer-block mb-4" id="contact">
+          <h4 class="text-accent-gold mb-3">Contact us</h4>
+          <ul class="list-unstyled">
+            <li class="mb-2"><i class="fas fa-map-marker-alt me-2 text-accent-gold"></i><span class="text-white-75">123 Engineering Road, Tech City</span></li>
+            <li class="mb-2"><i class="fas fa-phone me-2 text-accent-gold"></i><span class="text-white-75">+1 (555) 123-4567</span></li>
+            <li><i class="fas fa-envelope me-2 text-accent-gold"></i><a href="mailto:contact@cpesa.org" class="text-white-75 text-decoration-none">contact@cpesa.org</a></li>
+          </ul>
+        </div>
+        <!-- Social Section -->
+        <div class="footer-block mb-4" id="follow">
+          <div class="social-links mb-4 text-center text-lg-start">
+            <h4 class="text-accent-gold mb-3">Follow us</h4>
+            <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+          </div>
+          <p class="text-white mb-0 text-center text-lg-start">&copy; 2023 CPESS. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Modal for Adding Bills -->
+  <div class="modal fade" id="addBillModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Bill</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="newBillForm">
+                    <div class="mb-3">
+                        <label for="billName" class="form-label">Bill Name</label>
+                        <input type="text" class="form-control" id="billName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="billAmount" class="form-label">Amount</label>
+                        <input type="number" class="form-control" id="billAmount" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dueDate" class="form-label">Due Date</label>
+                        <input type="date" class="form-control" id="dueDate" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="saveBillBtn">Add Bill</button>
+            </div>
+        </div>
+    </div>
+</div>
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

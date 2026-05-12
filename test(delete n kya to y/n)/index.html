@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>School Bill Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body class="bg-white text-dark">
+    <nav class="navbar navbar-expand-md navbar-dark shadow-sm px-3 py-3">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="cpess.png" alt="School Logo" style="height: 40px; width: auto; margin-right: 10px;" />
+                School Bill Tracker
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto me-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contacts</a>
+                    </li>
+                </ul>
+                <a href="pages/login.html" class="btn btn-warning">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <h1 class="fw-bold mb-3 display-5">Track Your School Bills<br>Easily</h1>
+                    <p class="mb-4 lead text-secondary">Stay on top of your school payments with our simple and efficient billing system.</p>
+                    <a href="pages/login.html" class="btn btn-warning btn-lg">Get Started</a>
+                </div>
+                
+                <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    <div class="logo-flip-container ms-auto">
+                        <div class="logo-flipper">
+                            <div class="logo-front">
+                                <img alt="cpess" 
+                                     class="img-fluid rounded hero-img" 
+                                     src="cpess.png"/>
+                            </div>
+                            <div class="logo-back">
+                                <img alt="ub" 
+                                     class="img-fluid rounded hero-img" 
+                                     src="ub.png"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <tbody>
+            <!-- Keep only dynamic content placeholders -->
+        </tbody>
+    </div>
+
+    <footer class="footer-section py-5 mt-5">
+        <div class="container">
+            <div class="footer-stack">
+                <div class="footer-block mb-4" id="about">
+                    <h4 class="text-accent-gold mb-3">About Us</h4>
+                    <p class="text-white-75">Our school billing system makes it easy for students to track and manage their educational expenses.</p>
+                </div>
+                
+                <div class="footer-block mb-4" id="contact">
+                    <h4 class="text-accent-gold mb-3">Contact us</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <i class="fas fa-map-marker-alt me-2 text-accent-gold"></i>
+                            <span class="text-white-75">123 School Street, Education City</span>
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-phone me-2 text-accent-gold"></i>
+                            <span class="text-white-75">+1 (555) 123-4567</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope me-2 text-accent-gold"></i>
+                            <a href="mailto:contact@school.edu" class="text-white-75 text-decoration-none">contact@school.edu</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-block mb-4" id="follow">
+                    <div class="social-links mb-4 text-center">
+                        <h4 class="text-accent-gold mb-3">Follow us</h4>
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <p class="text-white mb-0 text-center">&copy; 2025 School Bill Tracker. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
