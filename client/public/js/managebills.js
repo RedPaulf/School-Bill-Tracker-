@@ -17,12 +17,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 <td>${bill.name}</td>
                 <td>₱${bill.amount.toFixed(2)}</td>
                 <td>${new Date(bill.dueDate).toLocaleDateString()}</td>
+                <td>₱${bill.amount.toFixed(2)}</td>
+                <td>₱0.00</td>
             `;
             row.onclick = () => selectRow(row, index);
             billsTableBody.appendChild(row);
         });
     }
-
     function selectRow(row, index) {
         if (selectedRow) selectedRow.classList.remove('selected-row');
         row.classList.add('selected-row');
