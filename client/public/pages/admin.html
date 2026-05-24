@@ -44,44 +44,58 @@
 
   <!-- Hero Section -->
   <div class="container-fluid py-4">
-    <div class="row align-items-start position-relative">
-  <div class="col text-center">
+
+  <!-- TITLE (TRUE CENTER) -->
+  <div class="text-center mb-3">
     <h1 class="mb-0">Student Lists</h1>
   </div>
 
-  <div class="col-auto d-flex flex-column gap-2 position-absolute end-0 top-0">
-            <!-- Existing buttons -->
-            <button class="btn btn-success w-100" onclick="window.location.href='managebills.html'">
-                <i class="fas fa-file-invoice-dollar me-1"></i> Manage Bills
-            </button>
-            <button id="editBtn" class="btn btn-primary w-100">
-                <i class="fas fa-edit me-1"></i> Edit List
-            </button>
-            <button id="saveBtn" class="btn btn-primary w-100" style="display:none;">
-                <i class="fas fa-save me-1"></i> Save Changes
-            </button>
-            
-            <!-- Move search input here -->
-            <div id="searchBar" class="input-group mb-3">
-              <input type="text" id="searchInput" class="form-control" placeholder="Search by Student ID">
-              <button class="btn btn-outline-secondary" type="button" id="clearSearchBtn">Clear</button>
-            </div>
-        </div>
-    </div>
-  </div>
+  <!-- SEARCH (TRUE CENTER) --
 
+  <!-- RIGHT BUTTONS (separate row so they don't affect centering) -->
+  
+
+</div>
+
+<div class="container-fluid px-3">
+
+  <!-- SEARCH (aligned with table) -->
+   
+  <div class="search-wrapper mb-3">
+  <div class="input-group" style="max-width: 400px;">
+    <input type="text" id="searchInput" class="form-control" placeholder="Search by Student ID">
+    <button class="btn btn-outline-secondary" type="button" id="clearSearchBtn">Clear</button>
+  </div>
+</div>
+
+  <!-- TABLE -->
   <table id="paymentTable" class="table table-bordered align-middle">
     <thead>
       <tr style="background-color: #6E1F1F; color: #fff;">
         <th>Name</th>
         <th>Student ID</th>
+        <th>Year Level</th>
         <th class="action-column" style="display: none;">Actions</th>
       </tr>
     </thead>
-    <tbody>
-      <!-- Rows rendered by JS -->
-    </tbody>
-</table>
+    <tbody></tbody>
+  </table>
+
+<div class="button-wrapper d-flex flex-wrap gap-2 mb-3">
+    <button class="btn btn-success" onclick="window.location.href='managebills.html'">
+      <i class="fas fa-file-invoice-dollar me-1"></i> Manage Bills
+    </button>
+
+    <button id="editBtn" class="btn btn-primary">
+      <i class="fas fa-edit me-1"></i> Edit List
+    </button>
+
+    <button id="saveBtn" class="btn btn-primary" style="display:none;">
+      <i class="fas fa-save me-1"></i> Save Changes
+    </button>
+  </div>
+
+</div>
   <!-- ___________________________________________________________________ -->
   <!-- Footer -->
   <footer class="footer-section py-5 mt-5">

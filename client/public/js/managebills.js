@@ -2,9 +2,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const billsTableBody = document.getElementById('billsTableBody');
     const saveBillBtn = document.getElementById('saveBillBtn');
     const saveEditBillBtn = document.getElementById('saveEditBillBtn');
+    
     let selectedRow = null;
 
     function loadBills() {
+        const studentCount = JSON.parse(localStorage.getItem('studentList') || '[]').length;
         const bills = JSON.parse(localStorage.getItem('globalBills') || '[]');
         billsTableBody.innerHTML = '';
         
@@ -13,12 +15,28 @@ document.addEventListener('DOMContentLoaded', function() {
             if (typeof bill.amount !== 'number' || isNaN(bill.amount)) return;
 
             const row = document.createElement('tr');
+            const expectedAmount = bill.amount * studentCount;
+
+            let accumulatedAmount = 0;
+
+            const students = JSON.parse(localStorage.getItem('studentList') || '[]');
+
+            students.forEach(student => {
+                const statuses = JSON.parse(
+                    localStorage.getItem(`billStatuses_${student.id}`) || '{}'
+                );
+
+                if (statuses[bill.billId] === 'paid') {
+                    accumulatedAmount += bill.amount;
+                }
+            });
+
             row.innerHTML = `
                 <td>${bill.name}</td>
                 <td>₱${bill.amount.toFixed(2)}</td>
                 <td>${new Date(bill.dueDate).toLocaleDateString()}</td>
-                <td>₱${bill.amount.toFixed(2)}</td>
-                <td>₱0.00</td>
+                <td>₱${expectedAmount.toFixed(2)}</td>
+                <td>₱${accumulatedAmount.toFixed(2)}</td>
             `;
             row.onclick = () => selectRow(row, index);
             billsTableBody.appendChild(row);
