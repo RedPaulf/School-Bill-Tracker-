@@ -376,7 +376,39 @@ table {
     width: 100%;
 }
 
-table th,
-table td {
-    width: 20%;
+#paymentTable {
+    table-layout: fixed;
+    width: 100%;
+}
+
+#paymentTable th,
+#paymentTable td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+
+#paymentTable th.action-column,
+#paymentTable td.action-column {
+    width: 140px;              
+    text-align: center;       
+    vertical-align: middle;   
+    white-space: nowrap;      
+    
+}
+
+#paymentTable td.action-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+
+#paymentTable td.action-column .btn {
+    min-width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
 }
