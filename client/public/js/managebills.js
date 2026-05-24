@@ -43,11 +43,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     function selectRow(row, index) {
-        if (selectedRow) selectedRow.classList.remove('selected-row');
-        row.classList.add('selected-row');
-        selectedRow = row;
-        selectedRow.dataset.index = index;
+    // remove previous selection
+    if (selectedRow) {
+        selectedRow.classList.remove('selected-row');
     }
+
+    // set new selection
+    row.classList.add('selected-row');
+    selectedRow = row;
+    selectedRow.dataset.index = index;
+}
 
     window.editBill = function() {
         if (!selectedRow) {

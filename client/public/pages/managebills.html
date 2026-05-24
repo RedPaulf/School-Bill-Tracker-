@@ -35,20 +35,7 @@
             <div class="col text-center">
                  <h1 class="m-0">Manage Bills</h1>
             </div>
-            <div class="col-auto d-flex flex-column gap-2">
-                <a href="admin.html" class="btn btn-secondary w-100">
-                    <i class="fas fa-arrow-left me-1"></i> Back to Admin
-                </a>
-                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#addBillModal">
-                    <i class="fas fa-plus me-1"></i> Add New Bill
-                </button>
-                <button class="btn btn-warning w-100" onclick="editBill()">
-                    <i class="fas fa-edit me-1"></i> Edit Bill
-                </button>
-                <button class="btn btn-danger w-100" onclick="deleteBill()">
-                    <i class="fas fa-trash me-1"></i> Remove Bill
-                </button>
-            </div>
+           
         </div>
 
         <!-- Bills Table -->
@@ -68,6 +55,22 @@
                 </tbody>
             </table>
         </div>
+
+         <div class="col-auto d-flex flex-row gap-2 align-items-center">
+                <a href="admin.html" class="btn btn-secondary w-100">
+                    <i class="fas fa-arrow-left me-1"></i> Back to Admin
+                </a>
+                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#addBillModal">
+                    <i class="fas fa-plus me-1"></i> Add New Bill
+                </button>
+                <button class="btn btn-warning w-100" onclick="editBill()">
+                    <i class="fas fa-edit me-1"></i> Edit Bill
+                </button>       
+                <button class="btn btn-danger w-100" onclick="deleteBill()">
+                    <i class="fas fa-trash me-1"></i> Remove Bill
+                </button>
+            </div>
+
     </div>
 
     <!-- Add Bill Modal -->

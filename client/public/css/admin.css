@@ -370,3 +370,13 @@ button {
     position: relative;
     z-index: 1;
 }
+
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+table th,
+table td {
+    width: 20%;
+}

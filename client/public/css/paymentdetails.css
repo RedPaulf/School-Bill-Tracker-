@@ -116,6 +116,7 @@ body {
 .status-select.status-paid {
   background-color: #2ecc40 !important; /* green */
   color: #fff !important;
+  
 }
 .status-select.status-pending {
   background-color: #ffc107 !important; /* yellow */
@@ -246,4 +247,33 @@ h1 {
 .status-overdue {
   color: #dc3545 !important;   /* Red */
   font-weight: 600;
+}
+
+.go-back-btn {
+  background-color: #FFC454 !important;
+  color: #6E1F1F !important;
+  border: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.go-back-btn:hover {
+  background-color: #e6ad36 !important;
+  color: #6E1F1F !important;
+}
+
+.back-btn-wrapper {
+    padding-left: 70.75rem;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+table th,
+table td {
+    width: 20%;
 }

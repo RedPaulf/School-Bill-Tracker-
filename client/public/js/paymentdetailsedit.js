@@ -18,40 +18,16 @@ document.addEventListener('DOMContentLoaded', function() {
             if (typeof bill.amount !== 'number' || isNaN(bill.amount)) return;
 
             const row = document.createElement('tr');
+            let status = studentStatuses[bill.billId] || 'pending';
 
-            const id = bill.billId;
-            const savedStatus = studentStatuses[bill.billId];
-const dueDate = new Date(bill.dueDate);
-const now = new Date();
-
-let status;
-
-// 💥 Paid ALWAYS wins
-if (savedStatus === 'paid') {
-    status = 'paid';
-}
-// 💥 Overdue is computed dynamically
-else if (dueDate <= now) {
-    status = 'overdue';
-}
-// 💥 Otherwise pending
-else {
-    status = 'pending';
-}
-
-            let accumulatedAmount = 0;
-
-            const students = JSON.parse(localStorage.getItem('studentList') || '[]');
-
-            students.forEach(student => {
-                const statuses = JSON.parse(
-                    localStorage.getItem(`billStatuses_${student.id}`) || '{}'
-                );
-
-                if (statuses[bill.billId] === 'paid') {
-                    accumulatedAmount += bill.amount;
-                }
-            });
+            // Check if due date is passed and status is not paid
+            const dueDate = new Date(bill.dueDate);
+            const now = new Date();
+            if (status !== 'paid' && dueDate <= now) {
+                status = 'overdue';
+                studentStatuses[bill.billId] = 'overdue';
+                statusesChanged = true;
+            }
 
             row.innerHTML = `
                 <td>${bill.name}</td>
@@ -61,6 +37,7 @@ else {
                     <select class="form-select status-select" data-bill-id="${bill.billId}">
                         <option value="paid" ${status === 'paid' ? 'selected' : ''}>Paid</option>
                         <option value="pending" ${status === 'pending' ? 'selected' : ''}>Pending</option>
+                        <option value="overdue" ${status === 'overdue' ? 'selected' : ''}>Overdue</option>
                     </select>
                 </td>
             `;

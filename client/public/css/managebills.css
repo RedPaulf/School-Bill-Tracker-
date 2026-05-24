@@ -39,11 +39,6 @@ table tbody tr:hover {
   cursor: pointer;
 }
 
-.selected-row {
-  background-color: rgba(110, 31, 31, 0.25) !important;
-}
-
-
 .table tbody tr:hover {
   background-color: rgba(110, 31, 31, 0.15);
   transform: scale(1.01);
@@ -61,9 +56,132 @@ table tbody tr:hover {
     position: relative;
 }
 
-.row.mb-4 .col.text-center {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: auto;
+.row.mb-4 {
+    position: static;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.col-auto .btn {
+    min-width: 120px;
+    font-weight: 600;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+/* Back to Admin Button */
+.btn-secondary {
+    background-color: #FFC454 !important;
+    color: #000 !important;
+}
+
+.btn-secondary:hover {
+    background-color: #e6ad36 !important;
+    color: #000 !important;
+    transform: translateY(-1px);
+}
+
+/* Add New Bill */
+.btn-primary {
+    background-color: #6E1F1F !important;
+    color: white !important;
+}
+
+.btn-primary:hover {
+    background-color: #5a1818 !important;
+    transform: translateY(-1px);
+}
+
+/* Edit Bill */
+.btn-warning {
+    background-color: #6E1F1F !important;
+    color: white !important;
+}
+
+.btn-warning:hover {
+    background-color: #5a1818 !important;
+    color: white !important;
+    transform: translateY(-1px);
+}
+
+/* Remove Bill */
+.btn-danger {
+    background-color: #6E1F1F !important;
+    color: white !important;
+}
+
+.btn-danger:hover {
+    background-color: #5a1818 !important;
+    color: white !important;
+    transform: translateY(-1px);
+}
+
+.d-flex {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.d-flex .btn {
+    flex: 1;
+    min-width: 160px;
+    max-width: 200px;
+    text-align: center;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.selected-row {
+    background-color: rgba(110, 31, 31, 0.25) !important;
+    transform: scale(1.01);
+    font-weight: 700 !important;
+    filter: none !important;
+    transition: 0.2 !important;
+}
+
+/* Modal Header - Maroon Theme */
+#addBillModal .modal-header {
+    background-color: #6E1F1F !important;
+    color: white !important;
+    border-bottom: none;
+}
+
+/* Make sure title stays readable */
+#addBillModal .modal-title {
+    color: white !important;
+}
+
+/* Optional: fix close button visibility */
+#addBillModal .btn-close {
+    filter: invert(1);
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+table th,
+table td {
+    width: 20%;
+}
+
+#addBillModal .modal-title,
+#editBillModal .modal-title {
+    font-weight: 700;
+}
+
+#addBillModal .btn-close,
+#editBillModal .btn-close {
+    filter: invert(1);
+}
+
+/* Add Bill + Edit Bill modal headers */
+#addBillModal .modal-header,
+#editBillModal .modal-header {
+    background-color: var(--cpesa-maroon);
+    color: white;
+    font-weight: 600;
 }
