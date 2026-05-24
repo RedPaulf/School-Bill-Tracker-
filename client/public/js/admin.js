@@ -47,23 +47,59 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (editMode) {
                 tr.innerHTML = `
-                    <td><input type="text" class="form-control name-input" value="${row.name || ''}" 
-                        onchange="updateRowData(${idx}, 'name', this.value)"></td>
-                    <td><input type="text" class="form-control id-input" value="${row.id || ''}"
-                        onchange="updateRowData(${idx}, 'id', this.value)"></td>
-                    <td class="text-center">
-                        <button class="btn btn-success btn-sm me-1" onclick="event.stopPropagation(); addRowAfter(${idx})">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                        <button class="btn btn-danger btn-sm" onclick="event.stopPropagation(); removeRow(${idx})">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
-                `;
+    <td>
+        <input type="text" class="form-control name-input"
+            value="${row.name || ''}"
+            onchange="updateRowData(${idx}, 'name', this.value)">
+    </td>
+
+    <td>
+        <input type="text" class="form-control id-input"
+            value="${row.id || ''}"
+            onchange="updateRowData(${idx}, 'id', this.value)">
+    </td>
+
+    <td>
+    <select class="form-control yearlevel-input"
+        onchange="updateRowData(${idx}, 'yearLevel', this.value)">
+
+        <option value="">Select Year Level</option>
+
+        <option value="2nd Year"
+            ${row.yearLevel === '2nd Year' ? 'selected' : ''}>
+            2nd Year
+        </option>
+
+        <option value="3rd Year"
+            ${row.yearLevel === '3rd Year' ? 'selected' : ''}>
+            3rd Year
+        </option>
+
+        <option value="4th Year"
+            ${row.yearLevel === '4th Year' ? 'selected' : ''}>
+            4th Year
+        </option>
+
+    </select>
+</td>
+
+    <td class="text-center">
+        <button class="btn btn-success btn-sm me-1"
+            onclick="event.stopPropagation(); addRowAfter(${idx})">
+            <i class="fas fa-plus"></i>
+        </button>
+
+        <button class="btn btn-danger btn-sm"
+            onclick="event.stopPropagation(); removeRow(${idx})">
+            <i class="fas fa-trash"></i>
+        </button>
+    </td>
+`;
             } else {
                 tr.innerHTML = `
                     <td>${row.name}</td>
                     <td>${row.id}</td>
+                    <td>${row.yearLevel || ''}</td>
                 `;
             }
 
