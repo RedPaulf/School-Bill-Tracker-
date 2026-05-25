@@ -34,16 +34,19 @@
     <!-- Hero Section -->
     <br>
     <div class="container-fluid">
-        <div class="row align-items-center">
-            <div class="col">
-                <h1>Payment Details - <span id="studentName"></span></h1>
-            </div>
-            <div class="col-auto">
-                <button class="btn btn-secondary" onclick="window.location.href='index.html'">
-                    <i class="fas fa-arrow-left me-2"></i>Go Back
-                </button>
-            </div>
-        </div>
+        <div class="container-fluid position-relative">
+    
+    <!-- Centered Title -->
+    <div class="text-center">
+        <h1 class="payment-title">
+            Payment Details - <span id="studentName"></span>
+        </h1>
+    </div>
+
+    <!-- Go Back Button -->
+    
+
+</div>
     </div>
 
     <table class="w-100">
@@ -59,6 +62,13 @@
             <!-- Bills will be loaded dynamically -->
         </tbody>
     </table>
+
+    <div class="back-btn-wrapper">
+        <button class="btn go-back-btn me-3"
+            onclick="window.location.href='index.html'">
+            <i class="fas fa-arrow-left me-2"></i>Go Back
+        </button>
+    </div>
 
     <!-- Footer -->
     <footer class="footer-section py-5 mt-5">

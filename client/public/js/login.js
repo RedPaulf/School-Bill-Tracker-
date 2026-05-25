@@ -14,19 +14,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Check for admin login
         if (id === 'admin' && password === 'admin') {
-            sessionStorage.setItem('userRole', 'admin');
+
             window.location.href = 'admin.html';
             return;
         }
 
         // Check for student login
-        const studentList = JSON.parse(localStorage.getItem('studentList') || '[]');
+        const studentList = [];
         const student = studentList.find(s => s.id === id);
-        
+
         if (student && password === 'ubian2022') { // Add password check for students
             // Store student info in session
-            sessionStorage.setItem('userRole', 'student');
-            sessionStorage.setItem('currentStudent', JSON.stringify(student));
+
+
             window.location.href = 'paymentdetails.html';
         } else {
             alert('Invalid student ID or password. Please try again.');
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const toggleIcon = document.getElementById('toggleIcon');
 
     if (toggleBtn && passwordInput && toggleIcon) {
-        toggleBtn.addEventListener('click', function() {
+        toggleBtn.addEventListener('click', function () {
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
                 toggleIcon.classList.remove('fa-eye');
