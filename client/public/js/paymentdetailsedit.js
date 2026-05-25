@@ -1,57 +1,34 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const currentStudent = JSON.parse(localStorage.getItem('currentStudent') || '{}');
+    const currentStudent = { id: "temp", name: "Student" };
     document.getElementById('studentName').textContent = currentStudent.name || '';
     
     function renderBills() {
         const tableBody = document.querySelector('tbody');
         tableBody.innerHTML = '';
 
-        const bills = JSON.parse(localStorage.getItem('globalBills') || '[]');
+        const bills = [];
         const studentBills = bills.filter(bill => bill.forAllStudents === true);
 
         // Get student-specific statuses
-        const studentStatuses = JSON.parse(localStorage.getItem(`billStatuses_${currentStudent.id}`) || '{}');
+        const studentStatuses = {};
         let statusesChanged = false;
+       
 
         studentBills.forEach((bill) => {
             // Skip bills with invalid amount
             if (typeof bill.amount !== 'number' || isNaN(bill.amount)) return;
 
             const row = document.createElement('tr');
+            let status = 'pending';
 
-            const id = bill.billId;
-            const savedStatus = studentStatuses[bill.billId];
-const dueDate = new Date(bill.dueDate);
-const now = new Date();
-
-let status;
-
-// 💥 Paid ALWAYS wins
-if (savedStatus === 'paid') {
-    status = 'paid';
-}
-// 💥 Overdue is computed dynamically
-else if (dueDate <= now) {
-    status = 'overdue';
-}
-// 💥 Otherwise pending
-else {
-    status = 'pending';
-}
-
-            let accumulatedAmount = 0;
-
-            const students = JSON.parse(localStorage.getItem('studentList') || '[]');
-
-            students.forEach(student => {
-                const statuses = JSON.parse(
-                    localStorage.getItem(`billStatuses_${student.id}`) || '{}'
-                );
-
-                if (statuses[bill.billId] === 'paid') {
-                    accumulatedAmount += bill.amount;
-                }
-            });
+            // Check if due date is passed and status is not paid
+            const dueDate = new Date(bill.dueDate);
+            const now = new Date();
+            if (status !== 'paid' && dueDate <= now) {
+                status = 'overdue';
+                // backend will handle overdue updates
+                statusesChanged = true;
+            }
 
             row.innerHTML = `
                 <td>${bill.name}</td>
@@ -61,6 +38,7 @@ else {
                     <select class="form-select status-select" data-bill-id="${bill.billId}">
                         <option value="paid" ${status === 'paid' ? 'selected' : ''}>Paid</option>
                         <option value="pending" ${status === 'pending' ? 'selected' : ''}>Pending</option>
+                        <option value="overdue" ${status === 'overdue' ? 'selected' : ''}>Overdue</option>
                     </select>
                 </td>
             `;
@@ -68,17 +46,14 @@ else {
         });
 
         // Save updated statuses if any were changed
-        if (statusesChanged) {
-            localStorage.setItem(`billStatuses_${currentStudent.id}`, JSON.stringify(studentStatuses));
-        }
+       
 
         // Add event listeners to status selects
         document.querySelectorAll('.status-select').forEach(select => {
             select.addEventListener('change', function() {
                 const billId = this.dataset.billId;
-                const statuses = JSON.parse(localStorage.getItem(`billStatuses_${currentStudent.id}`) || '{}');
-                statuses[billId] = this.value;
-                localStorage.setItem(`billStatuses_${currentStudent.id}`, JSON.stringify(statuses));
+                // value will be sent to backend later
+                const newStatus = this.value;
                 updateSelectStyle(this);
             });
             updateSelectStyle(select);
@@ -93,6 +68,6 @@ else {
     renderBills();
     window.addEventListener('storage', renderBills);
 
-    const studentList = JSON.parse(localStorage.getItem('studentList') || '[]');
+    // backend will handle student list later
     // Use studentList to render the table  
 });

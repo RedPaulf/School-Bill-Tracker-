@@ -113,33 +113,20 @@ body {
 }
 
 /* Status Select Styles */
-.status-select.status-paid {
-  background-color: #2ecc40 !important; /* green */
-  color: #fff !important;
-}
-.status-select.status-pending {
-  background-color: #ffc107 !important; /* yellow */
-  color: #333 !important;
-}
-.status-select.status-overdue {
-  background-color: #dc3545 !important; /* red */
-  color: #fff !important;
+/* Status text colors (FINAL FIX) */
+tbody td.status.overdue {
+  color: #dc3545; /* red */
+  font-weight: 600;
 }
 
-/* Add specific styles for status selects */
-.status-select.status-paid {
-    background-color: (cpessa-green);
-    color: #fff;
+tbody td.status.pending {
+  color: #ffc107; /* yellow */
+  font-weight: 600;
 }
 
-.status-select.status-pending {
-    background-color: #ffc107;
-    color: #333;
-}
-
-.status-select.status-overdue {
-    background-color: #dc3545;
-    color: #fff;
+tbody td.status.paid {
+  color: #2ecc40; /* green */
+  font-weight: 600;
 }
 
 /* Add specific table styles */
@@ -245,3 +232,16 @@ h1 {
   tbody td.status.paid {
     color: #2e7d32;
   }
+
+  .go-back-btn {
+  background-color: var(--cpesa-gold) !important;
+  color: var(--cpesa-maroon) !important;
+  margin-left: 70.75rem; 
+  transition: all 0.3s ease;
+}
+
+.go-back-btn:hover {
+  background-color: #e6ad36 !important; /* darker gold */
+  color: var(--cpesa-maroon) !important;
+  transform: translateY(-2px);
+}

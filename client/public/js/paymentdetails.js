@@ -1,16 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const currentStudent = JSON.parse(sessionStorage.getItem('currentStudent') || '{}');
+    const currentStudent = { id: "temp", name: "Student" };
     document.getElementById('studentName').textContent = currentStudent.name || '';
     
     function renderBills() {
         const tableBody = document.querySelector('tbody');
         tableBody.innerHTML = '';
 
-        const bills = JSON.parse(localStorage.getItem('globalBills') || '[]');
+        const bills = [];
         const studentBills = bills.filter(bill => bill.forAllStudents === true);
 
         // Get student-specific statuses (set by admin)
-        const studentStatuses = JSON.parse(localStorage.getItem(`billStatuses_${currentStudent.id}`) || '{}');
+        const studentStatuses = {};
 
         studentBills.forEach((bill) => {
             // Skip bills with invalid amount

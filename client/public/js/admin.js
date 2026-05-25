@@ -1,14 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Check if user is logged in
-    if (!sessionStorage.getItem('userRole') || sessionStorage.getItem('userRole') !== 'admin') {
-        window.location.href = 'login.html';
-        return;
-    }
+    
 
     // Add logout functionality
     const logoutBtn = document.getElementById('logoutBtn');
     logoutBtn.addEventListener('click', function() {
-        sessionStorage.removeItem('userRole');
+        
         window.location.href = '../index.html';
     });
 
@@ -21,13 +18,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchBar = document.getElementById('searchBar');
     
     // Load saved student data from localStorage
-    let rowData = JSON.parse(localStorage.getItem('studentList') || '[]');
+    let rowData = [];
     
     // Initialize globalBills if it doesn't exist
-    if (!localStorage.getItem('globalBills')) {
-        const initialGlobalBills = [];
-        localStorage.setItem('globalBills', JSON.stringify(initialGlobalBills));
-    }
+    
     
     let isEditMode = false;
     let selectedRowIndex = -1;
@@ -111,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Save to localStorage after each render
-        localStorage.setItem('studentList', JSON.stringify(rowData));
+        
         
         // Reapply search filter after rendering
         filterRows(searchTerm);
@@ -120,17 +114,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add event listener for Manage Bills button
     document.querySelector('.btn-success').addEventListener('click', function() {
         // Clear any previously selected student
-        localStorage.removeItem('currentStudent');
+        
         // Store that we're viewing all bills
-        localStorage.setItem('viewMode', 'all');
+        
     });
 
     // Modify selectRow function
     function selectRow(tr, idx) {
         if (!isEditMode) {
             const studentData = rowData[idx];
-            localStorage.setItem('currentStudent', JSON.stringify(studentData));
-            localStorage.setItem('viewMode', 'student');
+            
+            
             window.location.href = 'paymentdetailsedit.html';
             return;
         }
@@ -144,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.updateRowData = function(index, field, value) {
         rowData[index][field] = value;
-        localStorage.setItem('studentList', JSON.stringify(rowData)); // Save after update
+         // Save after update
     };
 
     window.addRowAfter = function(index) {
@@ -218,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function() {
         rowData = rowData.filter(row => row.name.trim() !== '' || row.id.trim() !== '');
         
         // Save to localStorage
-        localStorage.setItem('studentList', JSON.stringify(rowData));
+        
         
         renderTable(false);
         editBtn.style.display = 'inline-block';
@@ -237,7 +231,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function goHome(event) {
     event.preventDefault();
     if (confirm('Going to home page will log you out. Do you want to continue?')) {
-        sessionStorage.removeItem('userRole');
+        
         window.location.href = '../index.html';
     }
 }
