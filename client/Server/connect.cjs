@@ -19,12 +19,12 @@ async function main() {
     const collections = await client.db("Bill").collections();
     collections.forEach((collection) => console.log(collection.s.namespace.collection))
     console.log("Connected to MongoDB Atlas")
-    //const doc = {Name: "John Doe", 'Student ID': 220000, 'Year level': 4}
-    //const result = await data.insertOne(doc);
+    const doc = {Name: "John Doe", 'Student ID': 220000, 'Year level': 4}
+    const result = await data.insertOne(doc);
 
-    const query = {Name: "John Doe"};
-    const result = await data.deleteOne(query);
-    console.log(`Document deleted with _id: ${result.deletedCount}`);
+    //const query = {Name: "John Doe"};
+    //const result = await data.deleteOne(query);
+    console.log(`Document inserted with _id: ${result.insertedId}`);
     } catch (e) {
         console.error(e)
     } finally {
