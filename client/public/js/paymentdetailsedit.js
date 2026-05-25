@@ -1,31 +1,32 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const currentStudent = JSON.parse(localStorage.getItem('currentStudent') || '{}');
+    const currentStudent = { id: "temp", name: "Student" };
     document.getElementById('studentName').textContent = currentStudent.name || '';
     
     function renderBills() {
         const tableBody = document.querySelector('tbody');
         tableBody.innerHTML = '';
 
-        const bills = JSON.parse(localStorage.getItem('globalBills') || '[]');
+        const bills = [];
         const studentBills = bills.filter(bill => bill.forAllStudents === true);
 
         // Get student-specific statuses
-        const studentStatuses = JSON.parse(localStorage.getItem(`billStatuses_${currentStudent.id}`) || '{}');
+        const studentStatuses = {};
         let statusesChanged = false;
+       
 
         studentBills.forEach((bill) => {
             // Skip bills with invalid amount
             if (typeof bill.amount !== 'number' || isNaN(bill.amount)) return;
 
             const row = document.createElement('tr');
-            let status = studentStatuses[bill.billId] || 'pending';
+            let status = 'pending';
 
             // Check if due date is passed and status is not paid
             const dueDate = new Date(bill.dueDate);
             const now = new Date();
             if (status !== 'paid' && dueDate <= now) {
                 status = 'overdue';
-                studentStatuses[bill.billId] = 'overdue';
+                // backend will handle overdue updates
                 statusesChanged = true;
             }
 
@@ -45,17 +46,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Save updated statuses if any were changed
-        if (statusesChanged) {
-            localStorage.setItem(`billStatuses_${currentStudent.id}`, JSON.stringify(studentStatuses));
-        }
+       
 
         // Add event listeners to status selects
         document.querySelectorAll('.status-select').forEach(select => {
             select.addEventListener('change', function() {
                 const billId = this.dataset.billId;
-                const statuses = JSON.parse(localStorage.getItem(`billStatuses_${currentStudent.id}`) || '{}');
-                statuses[billId] = this.value;
-                localStorage.setItem(`billStatuses_${currentStudent.id}`, JSON.stringify(statuses));
+                // value will be sent to backend later
+                const newStatus = this.value;
                 updateSelectStyle(this);
             });
             updateSelectStyle(select);
@@ -70,6 +68,6 @@ document.addEventListener('DOMContentLoaded', function() {
     renderBills();
     window.addEventListener('storage', renderBills);
 
-    const studentList = JSON.parse(localStorage.getItem('studentList') || '[]');
+    // backend will handle student list later
     // Use studentList to render the table  
 });

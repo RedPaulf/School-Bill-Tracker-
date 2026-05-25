@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let selectedRow = null;
 
     function loadBills() {
-        const studentCount = JSON.parse(localStorage.getItem('studentList') || '[]').length;
-        const bills = JSON.parse(localStorage.getItem('globalBills') || '[]');
+        const studentCount = 0;
+        const bills = [];
         billsTableBody.innerHTML = '';
         
         bills.forEach((bill, index) => {
@@ -19,12 +19,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
             let accumulatedAmount = 0;
 
-            const students = JSON.parse(localStorage.getItem('studentList') || '[]');
+            const students = [];
 
             students.forEach(student => {
-                const statuses = JSON.parse(
-                    localStorage.getItem(`billStatuses_${student.id}`) || '{}'
-                );
+                const statuses = {};
 
                 if (statuses[bill.billId] === 'paid') {
                     accumulatedAmount += bill.amount;
@@ -60,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        const bills = JSON.parse(localStorage.getItem('globalBills') || '[]');
+        const bills = [];
         const index = parseInt(selectedRow.dataset.index);
         const bill = bills[index];
 
@@ -79,10 +77,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (confirm('Are you sure you want to delete this bill?')) {
-            const bills = JSON.parse(localStorage.getItem('globalBills') || '[]');
+            const bills = [];
             const index = parseInt(selectedRow.dataset.index);
             bills.splice(index, 1);
-            localStorage.setItem('globalBills', JSON.stringify(bills));
+            
             loadBills();
             selectedRow = null;
         }
@@ -98,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        const bills = JSON.parse(localStorage.getItem('globalBills') || '[]');
+        const bills = [];
         bills.push({
             name: billName,
             amount: billAmount,
@@ -107,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
             billId: Date.now()
         });
 
-        localStorage.setItem('globalBills', JSON.stringify(bills));
+        
         bootstrap.Modal.getInstance(document.getElementById('addBillModal')).hide();
         document.getElementById('newBillForm').reset();
         loadBills();
@@ -115,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     saveEditBillBtn.addEventListener('click', function() {
         const index = parseInt(document.getElementById('editBillIndex').value);
-        const bills = JSON.parse(localStorage.getItem('globalBills') || '[]');
+        const bills = [];
         const originalBill = bills[index];
 
         bills[index] = {
@@ -128,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
             status: originalBill.status || 'pending'
         };
 
-        localStorage.setItem('globalBills', JSON.stringify(bills));
+        
         bootstrap.Modal.getInstance(document.getElementById('editBillModal')).hide();
         loadBills();
         selectedRow = null;
